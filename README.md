@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## これは何
+オクトパスエナジーから電気代を取得してLineに通知するBotの作成
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用予定の技術
+- Rails(7系)
+- Ruby(3系)
+- GraphQL
+- LINE Messaging API
