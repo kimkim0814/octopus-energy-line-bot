@@ -5,6 +5,6 @@
 
 ## 使用予定の技術
 - Rails(7.0.8)
-- Ruby(2.7)
+- Ruby(3.2.0)
 - GraphQL
 - LINE Messaging API
