@@ -25,5 +25,9 @@ module OctopusEnergyLineBot
     config.api_only = true
 
     config.middleware.use ActionDispatch::Session::CookieStore
+
+    config.autoload_paths += %W(
+      #{config.root}/lib
+    )
   end
 end

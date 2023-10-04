@@ -85,6 +85,9 @@ GEM
       railties
       sprockets-rails
     graphql (2.1.0)
+    graphql-client (0.18.0)
+      activesupport (>= 3.0)
+      graphql
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
@@ -202,6 +205,7 @@ DEPENDENCIES
   debug
   graphiql-rails
   graphql
+  graphql-client
   pry-byebug
   pry-rails
   puma (~> 5.0)
