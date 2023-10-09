@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "graphql#execute"
+  end
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  post "/graphql", to: "graphql#execute"
+  resources :octopus_energy_bill, only: %i[index]
 end
