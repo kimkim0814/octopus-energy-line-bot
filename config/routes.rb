@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   end
 
   post "/graphql", to: "graphql#execute"
+  resources :octopus_energy_bill, only: %i[index]
 end
