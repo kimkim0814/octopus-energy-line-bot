@@ -1,32 +1,32 @@
 class OctopusEnergyBillController < ApplicationController
 
-  GetBillQUERY = OctopusClient::Client.parse <<~'GRAPHQL'
-	query(
-		$accountNumber: String!
-		$fromDatetime: DateTime
-		$toDatetime: DateTime
-	) {
-		account(accountNumber: $accountNumber) {
-			properties {
-				electricitySupplyPoints {
-					agreements {
-						validFrom
-					}
-					halfHourlyReadings(
-						fromDatetime: $fromDatetime
-						toDatetime: $toDatetime
-					) {
-						startAt
-            endAt
-						value
-						costEstimate
-						consumptionStep
-						consumptionRateBand
+	GetBillQUERY = OctopusClient::Client.parse <<~'GRAPHQL'
+		query(
+			$accountNumber: String!
+			$fromDatetime: DateTime
+			$toDatetime: DateTime
+		) {
+			account(accountNumber: $accountNumber) {
+				properties {
+					electricitySupplyPoints {
+						agreements {
+							validFrom
+						}
+						halfHourlyReadings(
+							fromDatetime: $fromDatetime
+							toDatetime: $toDatetime
+						) {
+							startAt
+							endAt
+							value
+							costEstimate
+							consumptionStep
+							consumptionRateBand
+						}
 					}
 				}
 			}
 		}
-	}
   GRAPHQL
 
   def index 
@@ -47,15 +47,6 @@ class OctopusEnergyBillController < ApplicationController
       type: 'text',
       text: text
     }
-    client.broadcast(message)
+		LineBotClient.new.client.broadcast(message)
   end
-
-	private
-
-	def client 
-		@client ||= Line::Bot::Client.new { |config|
-      config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
-      config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
-    }
-	end
 end
