@@ -1,6 +1,6 @@
 class OctopusEnergyBillController < ApplicationController
 
-	GetBillQUERY = OctopusClient::Client.parse <<~'GRAPHQL'
+	GetBillDayQUERY = OctopusClient::Client.parse <<~'GRAPHQL'
 		query(
 			$accountNumber: String!
 			$fromDatetime: DateTime
@@ -29,8 +29,8 @@ class OctopusEnergyBillController < ApplicationController
 		}
   GRAPHQL
 
-  def index 
-    result = OctopusClient::Client.query(GetBillQUERY, variables: {
+  def index
+    result = OctopusClient::Client.query(GetBillDayQUERY, variables: {
       accountNumber: ENV['OCTOPUS_ACCOUNT_NUMBER'],
       fromDatetime: Date.yesterday.beginning_of_day.iso8601,
       toDatetime: Date.yesterday.end_of_day.iso8601
@@ -41,7 +41,7 @@ class OctopusEnergyBillController < ApplicationController
     half_hourly_readings = electricity_supply_points.first["halfHourlyReadings"]
     @kwh = half_hourly_readings.pluck("value").map(&:to_f).sum
     @cost = half_hourly_readings.pluck("costEstimate").map(&:to_f).sum
-    text = "#{Date.yesterday.strftime('%Y年%m月%d日')}は#{@kwh.round(2)}kWh消費して#{@cost}円かかったよ" 
+    text = "#{Date.yesterday.strftime('%Y年%m月%d日')}は#{@kwh.round(2)}kWh消費して#{@cost}円かかったよ"
 
 		message = {
       type: 'text',
