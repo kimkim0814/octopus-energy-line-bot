@@ -64,7 +64,7 @@ class OctopusEnergyBill
     @cost = half_hourly_readings.pluck("costEstimate").map(&:to_f).sum.round(1)
     text = "#{Date.yesterday.strftime('%Y年%m月%d日')}は#{@kwh}kWh消費して#{@cost}円かかったよ"
 
-		LineBotClient.new.client.broadcast(message)
+		send_message(text)
   end
 
 	def notify_last_month
