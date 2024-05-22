@@ -86,7 +86,7 @@ class OctopusEnergyBill
 
 	def get_electricity_supply_points(result_data)
 		properties = result_data.original_hash.dig("data", "account", "properties")
-		electricity_supply_points = properties.first["electricitySupplyPoints"]
+		properties.first["electricitySupplyPoints"]
 	end
 
 	def send_message(text)
