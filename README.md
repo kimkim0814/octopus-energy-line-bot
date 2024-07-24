@@ -3,11 +3,12 @@
 ## これは何
 オクトパスエナジーから電気代を取得してLineに通知するBotの作成
 
-## 使用予定の技術
+## 使用中の技術
 - Rails(7.0.8)
 - Ruby(3.2.0)
 - GraphQL
 - LINE Messaging API
+- Github Actions
 
 ## 実装詳細
 詳しくは下記の記事をご覧ください。
